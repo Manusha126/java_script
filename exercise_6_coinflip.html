@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>coinflip</title>
+    </head>
+
+  <body>
+   
+    <script>
+      const Number1= Math.random();
+      let result='';
+      if(Number1<0.5)
+      {
+      result='heads';
+      }
+      else
+      {
+      result='tails';
+      }
+
+      console.log(result);
+
+      let guess='heads';
+
+      /*if(result===guess)
+      {
+        console.log('You win!');
+      }
+      else{
+        console.log('You lose!');
+      }*/
+
+      console.log(result===guess?'You win!':'You lose!');
+      
+
+
+
+      
+    </script>
+  </body>
+</html>
+
