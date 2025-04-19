@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My List</title>
+  <style>
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <h1>My List</h1>
+    <ul id="myList">
+      <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li>
+    </ul>
+    <button id="addButton">Add Item</button>
+  </div>
+
+  <script>
+   
+    let myList = document.getElementById("myList");
+    let addButton = document.getElementById("addButton");
+
+
+    function removeItem(event) {
+      event.target.remove(); 
+    }
+
+    let items = document.querySelectorAll(".item");
+    items.forEach(function(item) {
+      item.addEventListener("click", removeItem);
+    });
+
+    
+    addButton.addEventListener("click", function() {
+      let newItem = document.createElement("li"); 
+      newItem.textContent = "New Item";           
+      newItem.className = "item";                 
+      newItem.addEventListener("click", removeItem); 
+      myList.appendChild(newItem);                
+    });
+  </script>
+
+</body>
+</html>

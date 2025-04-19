@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script>
+
+      function transactionProcess(transaction)
+      {
+        let balance=0,totalDeposits=0,totalWithdrawl=0;
+        for(let i=0;i<transaction.length;i++)
+      {
+        let t=transaction[i];
+        if(t.type==='deposit')
+      {
+        balance+=t.amount;
+        totalDeposits+=t.amount;
+      }
+      else
+      {
+        balance-=t.amount;
+        totalWithdrawl+=t.amount;
+
+      }
+      }
+
+      return {finalBalance:balance,totalDeposits,totalWithdrawl};
+      }
+
+
+       const result=transactionProcess([
+        {type:'deposit',amount:500},
+        {type:'deposit',amount:500},
+        {type:'withdrawal',amount:500}
+        
+
+       ]);
+       console.log(result);
+     
+    </script>
+    
+  </body>
+</html>

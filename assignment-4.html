@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Variable Scope in JavaScript</title>
+</head>
+<body>
+  <h2>Open the console to see the output</h2>
+
+  <script>
+    // Global Scope
+    var globalVar = "I am global";
+
+    function showGlobal() {
+      console.log("Global Scope:", globalVar); // Accessible
+    }
+
+    showGlobal();
+    console.log("Outside function:", globalVar); // Accessible
+
+    // Local Scope (Function Scope)
+    function localExample() {
+      let localVar = "I am local";
+      console.log("Local Scope:", localVar); // Accessible here
+    }
+
+    localExample();
+    
+    {
+      let blockVar = "I am block-scoped";
+      const constBlock = "I am const in block";
+      console.log("Block Scope:", blockVar); // Works
+    }
+    
+    let name = "Outer";
+    function shadowing() {
+      let name = "Inner";
+      console.log("Shadowed name:", name); // Inner
+    }
+    shadowing();
+    console.log("Original name:", name); // Outer
+
+    function hoistingIssue() {
+      console.log("Before declaration:", hoistedVar); // undefined
+      var hoistedVar = "I was hoisted";
+      console.log("After declaration:", hoistedVar);
+    }
+    hoistingIssue();
+  </script>
+</body>
+</html>

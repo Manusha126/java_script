@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script>
+
+      function checkpalindrome(str,start,end)
+      {
+        while(start<end)
+        {
+          if(str[start]!==str[end])
+          {
+          return false;
+
+          }
+         else
+          {
+          start++;
+          end--;
+
+          }
+        }
+        return true;
+
+      }
+
+
+      function maximun_length_palindrome(s)
+      {
+        let maxLength=1;
+        let start=0;
+        const n=s.length;
+
+        for(let i=0;i<n;i++)
+        {
+        for(let j=i;j<n;j++)
+        {
+          if(checkpalindrome(s,i,j) && (j-i+1)>maxLength)
+          {
+          start=i;
+          maxLength=j-i+1;
+           }
+        }
+       }
+
+       return s.substring(start,start+maxLength);
+      }  
+     const input=prompt("Enter a string");
+     const result=maximun_length_palindrome(input);
+     console.log(result);
+    </script>
+    
+  </body>
+</html>

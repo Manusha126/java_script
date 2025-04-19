@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Evaluate Conditions</title>
+</head>
+<body>
+  <h2>Check the console for the evaluation results</h2>
+
+  <script>
+    function evaluateConditions(obj) {
+      if (obj.age > 18 && obj.hasLicense) {
+        return "Eligible to drive";
+      }
+
+      if (obj.temperature > 30 || obj.humidity > 70) {
+        return "Warning: High discomfort level";
+      }
+
+      if ((obj.role === "admin" || obj.role === "editor") && obj.isActive) {
+        return "Access granted";
+      }
+
+      // Additional complex conditions
+      if (!obj.isLoggedIn || obj.sessionExpired) {
+        return "Please log in again";
+      }
+
+      if (obj.score >= 90 && obj.passed === true && !obj.isDisqualified) {
+        return "Excellent performance";
+      }
+
+      if ((obj.country === "US" || obj.country === "UK") && obj.age >= 21) {
+        return "Access to region-specific content granted";
+      }
+
+      if (obj.balance <= 0 || !obj.accountActive) {
+        return "Account inactive or insufficient balance";
+      }
+
+      return "No specific condition met";
+    }
+
+    // Example usage:
+    const user1 = {
+      age: 25,
+      hasLicense: true,
+      temperature: 28,
+      humidity: 50,
+      role: "user",
+      isActive: true,
+      isLoggedIn: true,
+      sessionExpired: false,
+      score: 92,
+      passed: true,
+      isDisqualified: false,
+      country: "US",
+      balance: 100,
+      accountActive: true
+    };
+
+    console.log(evaluateConditions(user1)); // Output: "Eligible to drive"
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Library System</title>
+</head>
+<body>
+  <h2>Open the browser console to see the output (Right click → Inspect → Console)</h2>
+
+  <script>
+    // Book object (like a template)
+    function Book(title, author, isbn) {
+      this.title = title;
+      this.author = author;
+      this.isbn = isbn;
+      this.isBorrowed = false;
+
+      // Borrow the book
+      this.borrow = function() {
+        this.isBorrowed = true;
+      };
+
+      // Return the book
+      this.returnBook = function() {
+        this.isBorrowed = false;
+      };
+    }
+
+    // Library object
+    function Library() {
+      this.books = []; // empty list of books
+
+      // Add a book to the library
+      this.addBook = function(book) {
+        this.books.push(book);
+      };
+
+      // Find a book by its ISBN number
+      this.findBookByISBN = function(isbn) {
+        for (let i = 0; i < this.books.length; i++) {
+          if (this.books[i].isbn === isbn) {
+            return this.books[i];
+          }
+        }
+        return null;
+      };
+
+      // Show only available books
+      this.listAvailableBooks = function() {
+        console.log("Available Books:");
+        for (let i = 0; i < this.books.length; i++) {
+          if (!this.books[i].isBorrowed) {
+            console.log(this.books[i].title + " (Available)");
+          }
+        }
+      };
+
+      // Show only borrowed books
+      this.listBorrowedBooks = function() {
+        console.log("Borrowed Books:");
+        for (let i = 0; i < this.books.length; i++) {
+          if (this.books[i].isBorrowed) {
+            console.log(this.books[i].title + " (Borrowed)");
+          }
+        }
+      };
+    }
+
+    // Test the system
+    let myLibrary = new Library();
+
+    let book1 = new Book("The Alchemist", "Paulo Coelho", "101");
+    let book2 = new Book("Harry Potter", "J.K. Rowling", "102");
+
+    myLibrary.addBook(book1);
+    myLibrary.addBook(book2);
+
+    book1.borrow(); // borrow book1
