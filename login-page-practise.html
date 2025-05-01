@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background-color: #f4f4f4;
+    }
+    form {
+      background: white;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    p#result, p#strength {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="loginForm">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Enter your Gmail" required><br>
+    <input type="password" id="password" placeholder="Enter your password" required><br>
+    <p id="strength"></p>
+    <button type="submit">Login</button>
+    <p id="result"></p>
+  </form>
+
+  <script>
+    const correctEmail = "manusha@gmail.com";
+    const correctPassword = "abc123";
+
+    // 🔍 Check password strength when user types
+    document.getElementById("password").addEventListener("input", function () {
+      const password = this.value;
+      const strengthDisplay = document.getElementById("strength");
+
+      let strength = "";
+      let color = "";
+
+      const hasLetter = /[a-zA-Z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      const hasSymbol = /[!@#$%^&*]/.test(password);
+
+      if (password.length < 6 || (!hasNumber && !hasSymbol)) {
+        strength = "Weak password ❌";
+        color = "red";
+      } else if (password.length >= 6 && hasLetter && hasNumber && !hasSymbol) {
+        strength = "Medium password ⚠️";
+        color = "orange";
+      } else if (password.length >= 8 && hasLetter && hasNumber && hasSymbol) {
+        strength = "Strong password ✅";
+        color = "green";
+      } else {
+        strength = "Medium password ⚠️";
+        color = "orange";
+      }
+
+      strengthDisplay.textContent = strength;
+      strengthDisplay.style.color = color;
+    });
+
+    // 🔐 Check credentials on submit
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const result = document.getElementById("result");
+
+      const validGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+      if (!validGmail.test(email)) {
+        result.textContent = "Please enter a valid Gmail address.";
+        result.style.color = "red";
+      } else if (email === correctEmail && password === correctPassword) {
+        result.textContent = "Login successful!";
+        result.style.color = "green";
+      } else if (email === correctEmail && password !== correctPassword) {
+        result.textContent = "Incorrect password.";
+        result.style.color = "red";
+      } else {
+        result.textContent = "Invalid Gmail or password.";
+        result.style.color = "red";
+      }
+    });
+  </script>
+
+</body>
+</html>
